@@ -6,9 +6,10 @@ module.exports = {
   options: [],
   showHelp: false,
   run: async (client, interaction) => {
-    if (interaction.author.id !== 421196790394519562)
+    if (interaction.member.id !== 421196790394519562)
       return interaction.reply({
         content: "You are not allowed to use this command.",
+        ephemeral: true,
       });
     const commands = client.commands.filter((x) => x.showHelp !== false);
 

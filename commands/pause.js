@@ -4,9 +4,10 @@ module.exports = {
   permissions: "0x0000000000000800",
   options: [],
   run: async (client, interaction) => {
-    if (interaction.author.id !== 421196790394519562)
+    if (interaction.member.id !== 421196790394519562)
       return interaction.reply({
         content: "You are not allowed to use this command.",
+        ephemeral: true,
       });
 
     const queue = client.player.getQueue(interaction.guild.id);
