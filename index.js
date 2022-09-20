@@ -14,6 +14,9 @@ const client = new Client({
   ],
 })
 
+// Start the database
+const db = require('./db/db.js');
+
 client.config = config;
 client.player = new Player(client, client.config.opt.discordPlayer);
 const player = client.player
