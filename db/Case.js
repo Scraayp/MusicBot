@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
 
 const caseSchema = new mongoose.Schema({
-    userID: String,
     caseID: String,
-    caseReason: String,
+    caseGuild: String,
+    userID: String,
     caseMod: String,
-    caseDate: Date
+    caseReason: String,
+    caseDate: String,
 });
   
 const CaseModel = mongoose.model('Case', caseSchema);

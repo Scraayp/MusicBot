@@ -41,14 +41,20 @@ module.exports = {
 
       // Setup date variable
       let caseFullDate = new Date();
-      let caseDate = `${caseFullDate.getHours}:${caseFullDate.getMinutes} | ${caseFullDate.getDay}/${caseFullDate.getMonth}/${caseFullDate.getFullYear}`
+      let caseHours = await caseFullDate.getHours();
+      let caseMinutes = await caseFullDate.getMinutes();
+      let caseDay = await caseFullDate.getDay();
+      let caseMonth = await caseFullDate.getMonth() + 1;
+      let caseYear = await caseFullDate.getFullYear();
+      let caseDate = caseHours+":"+caseMinutes + "|" + caseDay+"/"+caseMonth+"/"+caseYear;
 
       // Creates a case in the database
       const Case = new CaseModel({
-        userID: user.id,
         caseID: caseID,
-        caseReason: reason,
+        caseGuild: interaction.guild.id,
+        userID: user.id,
         caseMod: interaction.member.id,
+        caseReason: reason,
         caseDate: caseDate,
       });
       
