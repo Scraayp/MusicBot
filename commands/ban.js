@@ -1,24 +1,30 @@
 const CaseModel = require('../db/Case.js');
 const { createCaseID} = require('../util/CaseGenerator.js')
-const {ApplicationCommandOptionType} = require('discord.js')
+const {ApplicationCommandOptionType} = require('discord.js');
 
 module.exports = {
-    name: "kick",
-    description: "Kick someone from the guild. Create case",
+    name: "ban",
+    description: "Ban someone from the guild.",
     permissions: "0x0000000000000800",
     options: [
         {
             name: "user",
-            description: "User you want to kick",
+            description: "User you want to ban",
             type: ApplicationCommandOptionType.User,
             required: true,
         },
         {
             name: "reason",
-            description: "The reason for the kick",
+            description: "The reason for the ban",
             type: ApplicationCommandOptionType.String,
             required: true
         },
+        {
+            name: "removeMsgs",
+            description: "If the bot should remove the messages of the user. (7 days)",
+            type: ApplicationCommandOptionType.Boolean,
+            required: true
+        }
     ],
     run: async (client, interaction) => {
       // Checks if the user has Administrator permission
@@ -27,12 +33,24 @@ module.exports = {
       // Gets the user and reason variable
       const user = interaction.options.getUser('user');
       const reason = interaction.options.getString('reason');
+      const removeMsgs = interaction.options.getBoolean('removeMsgs');
 
-      // Checks if the user is kickable!
+
+        // Create variable for msg remove period
+      let removeMsgsSec;
+
+      // Set the seconds to remove the messages for
+      if(removeMsgs == true){
+        removeMsgsSec = 604800
+      }else {
+        removeMsgsSec = 0
+      }
+
+      // Checks if the user is banable!
       if(user.id === client.user.id 
       || user.id === interaction.member.id 
       || user.id === interaction.guild.ownerId){
-        interaction.reply({content:`I'm not allowed to kick that user.`, ephemeral: true});
+        interaction.reply({content:`I'm not allowed to ban that user.`, ephemeral: true});
         return;
       }
 
@@ -54,7 +72,7 @@ module.exports = {
         caseGuild: interaction.guild.id,
         userID: user.id,
         caseMod: interaction.member.id,
-        caseAction: "Kick",
+        caseAction: "Ban",
         caseReason: reason,
         caseDate: caseDate,
       });
@@ -67,8 +85,8 @@ module.exports = {
         // Fetch the member from discord
         let userMember = await interaction.guild.members.fetch(user.id);
         
-        // Kick the fetched member snowflake
-        userMember.kick(`Case ID: ${Case.caseID} | Case Mod: ${interaction.member.user.tag}`).catch(err => {
+        // Ban the fetched member snowflake
+        userMember.ban({reason:`Case ID: ${Case.caseID} | Case Mod: ${interaction.member.user.tag}`, deleteMessageSeconds: removeMsgsSec}).catch(err => {
           if(err){
               interaction.reply({content:`Something went wrong. Please contact the bot administrator!`, ephemeral: true})
               return console.error(err);
