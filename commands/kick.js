@@ -54,6 +54,7 @@ module.exports = {
         caseGuild: interaction.guild.id,
         userID: user.id,
         caseMod: interaction.member.id,
+        caseAction: "Kick",
         caseReason: reason,
         caseDate: caseDate,
       });

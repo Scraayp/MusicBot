@@ -5,6 +5,7 @@ const caseSchema = new mongoose.Schema({
     caseGuild: String,
     userID: String,
     caseMod: String,
+    caseAction: "Warn" || "Tempmute" ||  "Mute" || "Kick" || "Ban" || "Mass Kick" || "Mass Ban" || "Lockdown" || "Mass Role Add" || "Mass Role Remove" || "Mass Everyone Role Change",
     caseReason: String,
     caseDate: String,
 });
