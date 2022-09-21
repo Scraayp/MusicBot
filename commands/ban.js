@@ -20,7 +20,7 @@ module.exports = {
             required: true
         },
         {
-            name: "removeMsgs",
+            name: "remove_messages",
             description: "If the bot should remove the messages of the user. (7 days)",
             type: ApplicationCommandOptionType.Boolean,
             required: true
@@ -33,7 +33,7 @@ module.exports = {
       // Gets the user and reason variable
       const user = interaction.options.getUser('user');
       const reason = interaction.options.getString('reason');
-      const removeMsgs = interaction.options.getBoolean('removeMsgs');
+      const removeMsgs = interaction.options.getBoolean('remove_messages');
 
 
         // Create variable for msg remove period
