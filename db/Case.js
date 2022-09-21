@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+
 const caseSchema = new mongoose.Schema({
     userID: String,
     caseID: String,
