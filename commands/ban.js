@@ -68,6 +68,7 @@ module.exports = {
 
       // Creates a case in the database
       const Case = new CaseModel({
+        _id: caseID,
         caseID: caseID,
         caseGuild: interaction.guild.id,
         userID: user.id,

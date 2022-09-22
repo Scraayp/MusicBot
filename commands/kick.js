@@ -4,7 +4,7 @@ const {ApplicationCommandOptionType} = require('discord.js')
 
 module.exports = {
     name: "kick",
-    description: "Kick someone from the guild. Create case",
+    description: "Kick someone from the guild.",
     permissions: "0x0000000000000800",
     options: [
         {
@@ -50,6 +50,7 @@ module.exports = {
 
       // Creates a case in the database
       const Case = new CaseModel({
+        _id: caseID,
         caseID: caseID,
         caseGuild: interaction.guild.id,
         userID: user.id,

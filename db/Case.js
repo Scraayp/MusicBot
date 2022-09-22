@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const caseSchema = new mongoose.Schema({
+    _id: String,
     caseID: String,
     caseGuild: String,
     userID: String,
