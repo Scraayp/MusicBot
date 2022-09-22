@@ -46,7 +46,7 @@ module.exports = {
       let caseDay = await caseFullDate.getDay();
       let caseMonth = await caseFullDate.getMonth() + 1;
       let caseYear = await caseFullDate.getFullYear();
-      let caseDate = caseHours+":"+caseMinutes + "|" + caseDay+"/"+caseMonth+"/"+caseYear;
+      let caseDate = caseHours+":"+caseMinutes + " | " + caseDay+"/"+caseMonth+"/"+caseYear;
 
       // Creates a case in the database
       const Case = new CaseModel({
