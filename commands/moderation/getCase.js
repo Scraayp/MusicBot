@@ -1,5 +1,5 @@
-const CaseModel = require('../db/Case.js');
-const { createCaseID} = require('../util/CaseGenerator.js')
+const CaseModel = require('../../db/Case.js');
+const { createCaseID} = require('../../util/CaseGenerator.js')
 const {ApplicationCommandOptionType} = require('discord.js');
 const { EmbedBuilder } = require('@discordjs/builders');
 

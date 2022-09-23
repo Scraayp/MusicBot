@@ -24,7 +24,7 @@ module.exports = {
         },
       ])
       .setTimestamp()
-      .setFooter({ text: `For support contact your server owner.` });
+      .setFooter({ text: `For support contact your bot administrator!` });
     interaction.reply({ embeds: [embed] }).catch((e) => {});
   },
 };
