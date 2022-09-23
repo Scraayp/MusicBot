@@ -1,5 +1,5 @@
 const { ApplicationCommandOptionType } = require("discord.js");
-const maxVol = require("../../config.js").opt.maxVol;
+const maxVol = require("../config.js").opt.maxVol;
 module.exports = {
   name: "volume",
   description: "Allows you to adjust the music volume.",

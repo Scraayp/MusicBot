@@ -26,24 +26,23 @@ fs.readdir("./events", (_err, files) => {
     if (!file.endsWith(".js")) return;
     const event = require(`./events/${file}`);
     let eventName = file.split(".")[0];
-    console.log(`Loaded Event: ${eventName}`);
     client.on(eventName, event.bind(null, client));
     delete require.cache[require.resolve(`./events/${file}`)];
   });
 });
 
 client.commands = [];
-fs.readdir(config.commandsDir, (err, files) => {
+
+fs.readdir("./commands/", (err, files) => {
   if (err) throw err;
   files.forEach(async (f) => {
     try {
-      let props = require(`${config.commandsDir}/${f}`);
+      let props = require(`./commands/${f}`);
       client.commands.push({
         name: props.name,
         description: props.description,
         options: props.options
       });
-      console.log(`Loaded command: ${props.name}`);
     } catch (err) {
       console.log(err);
     }

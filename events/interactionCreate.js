@@ -6,10 +6,10 @@ const db = require("croxydb");
 module.exports = async (client, interaction) => {
   if (!interaction.guild) return;
   if (interaction.type === InteractionType.ApplicationCommand) {
-    fs.readdir(config.commandsDir, (err, files) => {
+    fs.readdir('./commands', (err, files) => {
       if (err) throw err;
       files.forEach(async (f) => {
-        let props = require(`.${config.commandsDir}/${f}`);
+        let props = require(`../commands/${f}`);
         if (
           interaction.commandName.toLowerCase() === props.name.toLowerCase()
         ) {
