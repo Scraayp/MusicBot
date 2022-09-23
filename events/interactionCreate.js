@@ -19,40 +19,6 @@ module.exports = async (client, interaction) => {
                 props?.permissions || "0x0000000000000800"
               )
             ) {
-              const DJ = client.config.opt.DJ;
-              if (props && DJ.commands.includes(interaction.commandName)) {
-                let djRole = await db.get(`dj-${interaction.guild.id}`);
-                if (djRole) {
-                  const roleDJ = interaction.guild.roles.cache.get(djRole);
-                  if (
-                    !interaction.member.permissions.has("0x0000000000000020")
-                  ) {
-                    if (roleDJ) {
-                      if (!interaction.member.roles.cache.has(roleDJ.id)) {
-                        const embed = new EmbedBuilder()
-                          .setColor("007fff")
-                          .setTitle(client.user.username)
-                          .setThumbnail(client.user.displayAvatarURL())
-                          .setDescription(
-                            "You must have the <@&" +
-                              djRole +
-                              ">(DJ) role set on this server to use this command. Users without this role cannot use the " +
-                              client.config.opt.DJ.commands
-                                .map((astra) => "`" + astra + "`")
-                                .join(", ")
-                          )
-                          .setTimestamp()
-                          .setFooter({
-                            text: `For support contact your server owner.`,
-                          });
-                        return interaction
-                          .reply({ embeds: [embed], ephemeral: true })
-                          .catch((e) => {});
-                      }
-                    }
-                  }
-                }
-              }
               if (props && props.voiceChannel) {
                 if (!interaction.member.voice.channelId)
                   return interaction

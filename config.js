@@ -1,26 +1,9 @@
 module.exports = {
   TOKEN:
     "MTAxMTIzNDE4ODQxMTgwNTczNg.GqBCrK.K_1wzJ454MW017_BcyqKhnD4HN3Q-DSceGDDJ4",
-  ownerID: "421196790394519562",
-  botInvite: "https://michalk.nl/support",
   status: "Playing some music...",
-  commandsDir: "./commands",
 
   opt: {
-    DJ: {
-      commands: [
-        "back",
-        "clear",
-        "filter",
-        "loop",
-        "pause",
-        "resume",
-        "skip",
-        "stop",
-        "volume",
-      ], //Please don't touch
-    },
-
     voiceConfig: {
       leaveOnEnd: false,
       autoSelfDeaf: false, //IF YOU WANT TO DEAF THE BOT, set false to true.
