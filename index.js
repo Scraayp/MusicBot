@@ -49,7 +49,6 @@ fs.readdir("./commands/", (err, files) => {
   });
 });
 
-
 player.on('trackStart', (queue, track) => {
   if (queue) {
     if (!client.config.opt.loopMessage && queue.repeatMode !== 0) return;

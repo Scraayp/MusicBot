@@ -39,6 +39,8 @@ module.exports = {
       // Setup caseID variable
       let caseID = await createCaseID();
 
+      //  
+
       // Setup date variable
       let caseFullDate = new Date();
       let caseHours = await caseFullDate.getHours();

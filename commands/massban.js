@@ -3,19 +3,19 @@ const { createCaseID } = require("../util/CaseGenerator.js");
 const { ApplicationCommandOptionType } = require("discord.js");
 
 module.exports = {
-  name: "masskick",
-  description: "Kick multiple people from the guild.",
+  name: "massban",
+  description: "Ban multiple people from the guild.",
   permissions: "0x0000000000000800",
   options: [
     {
       name: "role",
-      description: "Role you want to kick!.",
+      description: "Role you want to ban.",
       type: ApplicationCommandOptionType.Role,
       required: true,
     },
     {
       name: "reason",
-      description: "The reason for the kick",
+      description: "The reason for the ban",
       type: ApplicationCommandOptionType.String,
       required: true,
     },
@@ -32,7 +32,7 @@ module.exports = {
     const role = interaction.options.getRole("role");
     const reason = interaction.options.getString("reason");
 
-    // Checks if the user is kickable!
+    // Checks if the user is banable!
     if (
       role.permissions.has("Administrator") ||
       role.position >
@@ -40,7 +40,7 @@ module.exports = {
           .position
     ) {
       interaction.reply({
-        content: `I'm not allowed to kick that role.`,
+        content: `I'm not allowed to ban that role.`,
         ephemeral: true,
       });
       return;
@@ -74,7 +74,7 @@ module.exports = {
       caseGuild: interaction.guild.id,
       roleID: role.id,
       caseMod: interaction.member.id,
-      caseAction: "Mass Kick",
+      caseAction: "Mass Ban",
       caseReason: reason,
       caseDate: caseDate,
     });
@@ -86,7 +86,7 @@ module.exports = {
       await interaction.guild.members.fetch();
 
       role.members.forEach((member) => {
-        member.kick(
+        member.ban(
           `Case ID: ${Case.caseID} | Case Mod: ${interaction.member.user.tag}`
         );
       });
@@ -102,7 +102,7 @@ module.exports = {
 
     // Sends a message back
     interaction.reply({
-      content: `Kicked **${role.members.size}** people with reason **${reason}**! Case ID: ${Case.caseID}`,
+      content: `Banned **${role.members.size}** people with reason **${reason}**! Case ID: ${Case.caseID}`,
       ephemeral: true,
     });
   },
